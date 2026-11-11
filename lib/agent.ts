@@ -38,7 +38,7 @@ export async function* runAgent(jobType: JobType, input: string): AsyncGenerator
   let userContent = input;
 
   if (jobType === "roast") {
-    yield { type: "step", text: `Visiting ${input}` };
+    yield { type: "step", text: `Opening ${input.replace(/^https?:\/\//, "")}` };
     try {
       const page = await fetchPageText(input);
       yield { type: "step", text: `Read ${page.text.length.toLocaleString()} characters${page.title ? ` from "${page.title.slice(0, 60)}"` : ""}` };
@@ -47,14 +47,14 @@ export async function* runAgent(jobType: JobType, input: string): AsyncGenerator
       yield { type: "step", text: `Couldn't load the page (${(e as Error).message}), roasting the URL alone` };
       userContent = `URL: ${input}\n(The page could not be loaded. Roast the URL/domain itself, and mention the site didn't even load.)`;
     }
-    yield { type: "step", text: "Finding the weakest buzzwords" };
+    yield { type: "step", text: "Spotting the buzzwords" };
   } else if (jobType === "name") {
-    yield { type: "step", text: "Brainstorming 50 names, throwing away 40" };
+    yield { type: "step", text: "Brainstorming fifty names and keeping the best ten" };
   } else {
-    yield { type: "step", text: "Studying what goes viral" };
+    yield { type: "step", text: "Reading your pitch" };
   }
 
-  yield { type: "step", text: "Drafting" };
+  yield { type: "step", text: "Writing it up" };
 
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",

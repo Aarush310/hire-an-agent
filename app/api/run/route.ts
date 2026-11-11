@@ -31,14 +31,14 @@ export async function POST(req: Request) {
           throw new Error(`Payment isn't authorized (status: ${pi.status})`);
         }
 
-        send({ type: "step", text: "Payment authorized: $1.00 on hold, not charged yet" });
+        send({ type: "step", text: "$1 held on your card, not charged" });
         let result = "";
         for await (const ev of runAgent(jobType, input)) {
           if (ev.type === "token") result += ev.text;
           send(ev);
         }
         if (result) {
-          send({ type: "step", text: "Delivering work" });
+          send({ type: "step", text: "Handing it over" });
           await stripe().paymentIntents.update(pi.id, { metadata: resultToMetadata(result) });
         }
         send({ type: "done", status: pi.status });
