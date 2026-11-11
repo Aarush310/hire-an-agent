@@ -33,6 +33,12 @@ export function resultFromMetadata(md: Stripe.Metadata): string {
 
 /** Resolve a Checkout Session id into its (expanded) PaymentIntent. */
 export async function paymentIntentForSession(sessionId: string) {
+  // Instant demo pay jobs are addressed by PaymentIntent id directly.
+  if (/^pi_[A-Za-z0-9_]+$/.test(sessionId)) {
+    const pi = await stripe().paymentIntents.retrieve(sessionId);
+    if (pi.metadata.app !== APP_TAG) throw new Error("Payment not found");
+    return { session: null, pi };
+  }
   if (!/^cs_[A-Za-z0-9_]+$/.test(sessionId)) throw new Error("Invalid session id");
   const session = await stripe().checkout.sessions.retrieve(sessionId, {
     expand: ["payment_intent"],

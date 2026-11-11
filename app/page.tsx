@@ -21,15 +21,16 @@ export default function Home() {
       .catch(() => {});
   }, []);
 
-  async function hire(e: React.FormEvent) {
+  async function hire(e: React.FormEvent, demo = false) {
     e.preventDefault();
+    if (!input.trim()) return;
     setBusy(true);
     setError("");
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ jobType, input }),
+        body: JSON.stringify({ jobType, input, demo }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) throw new Error(data.error || "Couldn't start checkout. Try again?");
@@ -100,9 +101,18 @@ export default function Home() {
           <button className="btn block" disabled={busy || !input.trim()}>
             {busy ? "Opening secure checkout…" : <>Start for $1 <Arrow /></>}
           </button>
+          <button
+            type="button"
+            className="btn block ghost"
+            style={{ marginTop: 8 }}
+            disabled={busy || !input.trim()}
+            onClick={(e) => hire(e, true)}
+          >
+            ⚡ Instant demo pay (test card, skip checkout)
+          </button>
           {error && <div className="err">{error}</div>}
           <p className="fine">
-            Demo mode: pay with <code>4242 4242 4242 4242</code>, any date and CVC.
+            Demo mode: no real money. Checkout test card is <code>4242 4242 4242 4242</code>.
           </p>
         </form>
       </section>

@@ -21,6 +21,25 @@ export async function POST(req: Request) {
 
   const origin = req.headers.get("origin") ?? new URL(req.url).origin;
   const job = JOBS[jobType];
+  const metadata = { app: APP_TAG, job_type: jobType, input };
+
+  // Instant demo pay: authorize Stripe's test Visa server-side (test mode only), skip the checkout page.
+  if (body.demo) {
+    if (!process.env.STRIPE_SECRET_KEY?.match(/^(sk|rk)_test_/)) {
+      return NextResponse.json({ error: "Demo pay is only available in test mode" }, { status: 400 });
+    }
+    const pi = await stripe().paymentIntents.create({
+      amount: PRICE_CENTS,
+      currency: "usd",
+      capture_method: "manual",
+      payment_method: "pm_card_visa",
+      payment_method_types: ["card"],
+      confirm: true,
+      description: `Hire-an-Agent: ${job.title} (instant demo pay)`,
+      metadata,
+    });
+    return NextResponse.json({ url: `${origin}/job/${pi.id}` });
+  }
 
   const session = await stripe().checkout.sessions.create({
     mode: "payment",
@@ -41,7 +60,7 @@ export async function POST(req: Request) {
     payment_intent_data: {
       capture_method: "manual",
       description: `Hire-an-Agent: ${job.title}`,
-      metadata: { app: APP_TAG, job_type: jobType, input },
+      metadata,
     },
     success_url: `${origin}/job/{CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/`,
