@@ -4,6 +4,9 @@
     "openrouter": {
       "name": "OpenRouter"
     },
+    "stripe": {
+      "name": "stripe"
+    },
     "vercel": {
       "name": "Vercel"
     }
@@ -14,6 +17,12 @@
       "name": "openrouter-api",
       "providerName": "OpenRouter",
       "serviceId": "api"
+    },
+    "stripe-sandbox": {
+      "livemode": true,
+      "name": "stripe-sandbox",
+      "providerName": "stripe",
+      "serviceId": "sandbox"
     },
     "vercel-plan": {
       "livemode": true,
