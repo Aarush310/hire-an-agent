@@ -6,6 +6,12 @@
 
 Built in about 30 minutes at **Agentic Dev Day** with **Stripe Projects**.
 
+![Hire-an-Agent home page](docs/home.png)
+
+| The agent's delivered work (a real roast of linear.app) | Live board for the room, with a QR code |
+|---|---|
+| ![Job page](docs/job.png) | ![Live board](docs/wall.png) |
+
 ---
 
 ## The problem
