@@ -3,7 +3,6 @@ node_modules
 .vercel
 next-env.d.ts
 *.tsbuildinfo
-.projects/state.local.json
 
 .projects/cache
 .projects/vault

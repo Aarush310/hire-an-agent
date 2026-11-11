@@ -1,0 +1,85 @@
+{
+  "version": 4,
+  "project": {
+    "catalog": "prod",
+    "initializedAt": "2026-11-11T12:31:19.326Z",
+    "merchantDisplayName": null,
+    "merchantId": "acct_1UaYc0PrsHU2eA87",
+    "projectId": "project_61Vjydjd4IxCecuIG16VjwZM7VGC2Djm1Co2VX4jwGFs",
+    "projectName": "hire-an-agent"
+  },
+  "providers": {
+    "openrouter": {
+      "accountRequestId": "facctrq_61VjyeN48t6QjtZV116VjwZM7VGC2Djm1Co2VX4jwR2G",
+      "configuration": {},
+      "linkedAt": "2026-11-11T12:32:00.926Z",
+      "providerId": "prvdr_61URImmFACEuDHEx651IO",
+      "providerName": "OpenRouter",
+      "redirectUrl": null,
+      "requestedAt": "2026-11-11T12:31:59.464Z",
+      "status": "complete"
+    },
+    "vercel": {
+      "accountRequestId": "facctrq_61VjyelE1Z2w1F8DW16VjwZM7VGC2Djm1Co2VX4jw0f2",
+      "configuration": {},
+      "linkedAt": "2026-11-11T12:32:25.617Z",
+      "providerId": "prvdr_61ULUAr4zlQgZkvXY5LsG",
+      "providerName": "Vercel",
+      "redirectUrl": null,
+      "requestedAt": "2026-11-11T12:32:22.986Z",
+      "status": "complete"
+    }
+  },
+  "resources": {
+    "openrouter-api": {
+      "configuration": {},
+      "createdAt": "2026-11-11T12:32:02.756Z",
+      "lastRevealedAt": "2026-11-11T12:32:03.055Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "openrouter-api",
+      "providerId": "prvdr_61URImmFACEuDHEx651IO",
+      "providerName": "OpenRouter",
+      "resourceId": "fres_61VjyePzBXhe4d4Yd16VjwZM7VGC2Djm1Co2VX4jwImO",
+      "serviceId": "api"
+    },
+    "stripe-sandbox": {
+      "configuration": {},
+      "createdAt": "2026-11-11T12:41:17.022Z",
+      "lastRevealedAt": "2026-11-11T12:41:17.341Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "stripe-sandbox",
+      "providerId": "prvdr_stripe_native",
+      "providerName": "stripe",
+      "resourceId": "fres_61VjynMlBz66Bvphs16VjwZM7VGC2Djm1Co2VX4jw6K8",
+      "serviceId": "sandbox"
+    },
+    "vercel-plan": {
+      "configuration": {},
+      "createdAt": "2026-11-11T12:32:26.462Z",
+      "lastRevealedAt": "2026-11-11T12:32:26.790Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "vercel-plan",
+      "providerId": "prvdr_61ULUAr4zlQgZkvXY5LsG",
+      "providerName": "Vercel",
+      "resourceId": "fres_61VjyeoXo23hWZZsG16VjwZM7VGC2Djm1Co2VX4jwMFM",
+      "serviceId": "hobby"
+    },
+    "vercel-project": {
+      "configuration": {
+        "name": "hire-an-agent"
+      },
+      "createdAt": "2026-11-11T12:32:37.848Z",
+      "lastRevealedAt": "2026-11-11T12:32:38.171Z",
+      "lastStatus": "complete",
+      "livemode": true,
+      "name": "vercel-project",
+      "providerId": "prvdr_61ULUAr4zlQgZkvXY5LsG",
+      "providerName": "Vercel",
+      "resourceId": "fres_61VjyezZCnQVPKWnW16VjwZM7VGC2Djm1Co2VX4jwO3k",
+      "serviceId": "project"
+    }
+  }
+}
